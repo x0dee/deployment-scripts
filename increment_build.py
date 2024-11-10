@@ -1,10 +1,11 @@
 import os
 import json
+import sys
 
-def increment_build_in_qa():
+def increment_build_in_qa(base_path):
     # Define paths
-    qa_folder = 'Qa'
-    json_file_path = os.path.join(qa_folder, 'appSettings.json')
+    qa_folder = os.path.join(base_path, "HardCoded")  
+    json_file_path = os.path.join(qa_folder, "appSettings.json")
 
     # Step 1: Create Qa folder if it does not exist
     if not os.path.exists(qa_folder):
@@ -31,4 +32,7 @@ def increment_build_in_qa():
     print(f"{json_file_path} updated with deploymentVersion: {data['deploymentVersion']}")
 
 # Run the function
-increment_build_in_qa()
+
+# Arguments passed
+path = sys.argv[1]
+increment_build_in_qa(base_path=path)
